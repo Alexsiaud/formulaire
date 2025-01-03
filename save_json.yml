@@ -1,0 +1,28 @@
+name: Save JSON to Text File
+
+on:
+  workflow_dispatch: # Permet de déclencher manuellement
+  repository_dispatch: # Réagit aux webhooks GitHub personnalisés
+
+jobs:
+  save-json:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create responses folder if not exists
+      run: mkdir -p REPONSES
+
+    - name: Save JSON data
+      run: |
+        echo "${{ github.event.client_payload.json_data }}" > REPONSES/response_$(date +%s).txt
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add REPONSES/
+        git commit -m "Add new JSON response"
+        git push

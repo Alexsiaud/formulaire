@@ -252,7 +252,7 @@
                     method: 'POST',
                     headers: {
                         'Accept': 'application/vnd.github.v3+json',
-                        'Authorization': 'token on.workflow_call.secrets.TOKEN_FORM',
+                        'Authorization': 'token ${{ secrets.TOKEN_FORM }}',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({

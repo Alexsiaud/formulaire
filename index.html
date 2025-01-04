@@ -248,11 +248,11 @@
 
             // Send the JSON data to the server
             try {
-                const response = await fetch('https://api.github.com/repos/<Alexsiaud>/<formulaire>/dispatches', {
+                const response = await fetch('https://api.github.com/repos/Alexsiaud/formulaire/dispatches', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/vnd.github.v3+json',
-                        'Authorization': 'token <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>',
+                        'Authorization': 'token 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',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({

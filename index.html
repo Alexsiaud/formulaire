@@ -248,23 +248,31 @@
 
             // Send the JSON data to the server
             try {
-                const response = await fetch('https://votre-serveur.com/endpoint', {
+                const response = await fetch('https://api.github.com/repos/<Alexsiaud>/<formulaire>/dispatches', {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': 'token <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>',
                         'Content-Type': 'application/json'
                     },
-                    body: jsonData
+                    body: JSON.stringify({
+                        event_type: 'save_json',
+                        client_payload: {
+                            json_data: jsonData
+                        }
+                    })
                 });
 
                 if (response.ok) {
                     alert('Formulaire soumis avec succès !');
                     showCategory(currentCategoryIndex + 1); // Show thank you page
                 } else {
+                    console.error('Erreur :', await response.text());
                     alert('Erreur lors de la soumission du formulaire.');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Erreur lors de la soumission du formulaire.');
+                console.error('Erreur :', error);
+                alert('Erreur lors de la soumission.');
             }
         }
 
